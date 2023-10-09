@@ -1,0 +1,127 @@
+databaseChangeLog:
+
+  - changeSet:
+      id:  1
+      author:  brendan
+      changes:
+        - createTable:
+            tableName:  customer
+            columns:
+              - column:
+                  name:  id
+                  type:  bigint(8)
+                  autoIncrement: true
+                  constraints:
+                    primaryKey:  true
+                    nullable:  false
+              - column:
+                  name:  fullName
+                  type:  varchar(50)
+                  constraints:
+                    nullable:  false
+              - column:
+                  name:  registrationCode
+                  type:  varchar(50)
+                  constraints:
+                    nullable:  false
+              - column:
+                  name:  email
+                  type:  varchar(50)
+                  constraints:
+                    nullable:  false
+              - column:
+                  name:  telephone
+                  type:  varchar(20)
+                  constraints:
+                    nullable:  true
+
+  - changeSet:
+      id:  2
+      author:  brendan
+      changes:
+        - createTable:
+            tableName:  order
+            columns:
+              - column:
+                  name:  id
+                  type:  bigint(8)
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable:  false
+              - column:
+                  name:  customer_id
+                  type:  bigint(8)
+                  constraints:
+                    nullable:  false
+                    foreignKeyName:  fk_order_customer
+                    references:  customer(id)
+              - column:
+                  name:  submission_date
+                  type:  date
+#                  valueDate:  CURRENT_TIMESTAMP
+#                  defaultValueDate:  current_timestamp
+                  constraints:
+                    nullable:  false
+
+  - changeSet:
+      id:  3
+      author:  brendan
+      changes:
+        - createTable:
+            tableName:  product
+            columns:
+              - column:
+                  name:  id
+                  type:  bigint(8)
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable:  false
+              - column:
+                  name:  name
+                  type:  varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name:  skuCode
+                  type:  varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name:  unitPrice
+                  type:  decimal(19, 4)
+
+  - changeSet:
+      id:  4
+      author:  brendan
+      changes:
+        - createTable:
+            tableName:  order_line
+            columns:
+              - column:
+                  name:  id
+                  type:  bigint(8)
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable:  false
+              - column:
+                  name:  order_id
+                  type:  bigint(8)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_orderLine_order
+                    references:  order(id)
+              - column:
+                  name:  product_id
+                  type:  bigint(8)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_orderLine_product
+                    references:  product(id)
+              - column:
+                  name:  quantity
+                  type:  int
+                  constraints:
+                    nullable: false

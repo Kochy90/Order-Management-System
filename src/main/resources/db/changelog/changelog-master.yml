@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: classpath:db\changelog\00000000000000_initial_schema.yml
+#  - include:
+#      file: the next change to be made..

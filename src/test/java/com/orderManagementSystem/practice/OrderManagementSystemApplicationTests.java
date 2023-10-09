@@ -1,4 +1,4 @@
-package com.orderManagementSystem.demo;
+package com.orderManagementSystem.practice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
