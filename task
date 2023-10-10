@@ -37,3 +37,6 @@ ORDER MANAGEMENT SYSTEM API:
 	1) you can use just Java, implement only logic in <<Service>> classes (basic)
 	2) You can use Spring and Spring MVC with JDBC or Hibernate		  (more points)
 	3) You can use SpringBoot and SpringData (JPA)					  (most points)
+
+	//TODO Int test with Mockaroo, implement "unhappy flow" with exception, covered by unit tests,
+	//TODO Build APIs in controllers (not complicated, just calls the relevant services and methods)

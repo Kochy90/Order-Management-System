@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "order_line")
 public class OrderLine {
 
     @Id
@@ -16,10 +17,10 @@ public class OrderLine {
     @Column(name = "id")
     private Long id;
 
-    // todo detmerine if bi-directional association is required
-//    @ManyToOne
-//    @JoinColumn(name = "order_id")
-//    private Long orderId;
+    // todo determine if bi-directional association is required
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
 
     @ManyToOne
     @JoinColumn(name = "product_id")

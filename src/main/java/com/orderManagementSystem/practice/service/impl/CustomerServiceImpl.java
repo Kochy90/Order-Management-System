@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 @Data
 @Service
-//@NoArgsConstructor
 @AllArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
 
@@ -24,4 +23,5 @@ public class CustomerServiceImpl implements CustomerService {
         Customer newCustomer = CustomerMapper.INSTANCE.convert(dto);
         return repository.save(newCustomer);
     }
+
 }

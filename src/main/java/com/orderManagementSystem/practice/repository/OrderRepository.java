@@ -2,6 +2,8 @@ package com.orderManagementSystem.practice.repository;
 
 import com.orderManagementSystem.practice.model.Customer;
 import com.orderManagementSystem.practice.model.Order;
+import com.orderManagementSystem.practice.model.OrderLine;
+import com.orderManagementSystem.practice.model.Product;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -14,20 +16,15 @@ import java.util.List;
 @Repository
 public interface OrderRepository extends CrudRepository<Order, Long> {
 
-//    @Modifying(clearAutomatically = true, flushAutomatically = true)
-//    @Query("SELECT o FROM Order o WHERE o.submission_date = :date")
-//    List<Order> findOrderBySubmissionDate1(@Param("date") Date date);
-    //    @Query("select a from Article a where a.creationDateTime <= :creationDateTime")
-//    Order findOrderBySubmissionDate(Date date);
-
-
-//    Order findOrderByProduct(Product product);
     Order findOrderByCustomer(Customer customer);
     List<Order> findOrdersBySubmissionDate(Date date);
 
-//    @Modifying(clearAutomatically = true, flushAutomatically = true)
-//    @Query("SELECT o FROM Order o JOIN order_line ol ON o.id = ol.order_id WHERE ol.product_id = productId")
-//    List<Order> findOrdersByProductId(@Param("productId") Long productId);
+    @Query("SELECT o FROM Order o, OrderLine l WHERE l.product.id = :pId")
+    List<Order> findOrdersByProductId(@Param("pId") Long productId);
+
+    @Query("SELECT o FROM Order o, OrderLine l WHERE l.product = :prod")
+    List<Order> findOrdersByProduct(@Param("prod") Product product);
 
     List<Order> findOrdersByCustomer(Customer customer);
+
 }
