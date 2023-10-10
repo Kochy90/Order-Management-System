@@ -1,5 +1,6 @@
 package com.orderManagementSystem.practice.model.mapper;
 
+import com.orderManagementSystem.practice.dto.AddOrderLineToOrderDto;
 import com.orderManagementSystem.practice.model.OrderLine;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -9,5 +10,5 @@ public interface OrderLineMapper {
 
     OrderLineMapper INSTANCE = Mappers.getMapper(OrderLineMapper.class );
 
-//    OrderLine convert();
+    OrderLine convert(AddOrderLineToOrderDto dto);
 }
