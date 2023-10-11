@@ -1,12 +1,11 @@
 package com.orderManagementSystem.practice.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "order_line")
@@ -17,13 +16,11 @@ public class OrderLine {
     @Column(name = "id")
     private Long id;
 
-    // todo determine if bi-directional association is required
     @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
-
-    @ManyToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_name")
     private Product product;
     private Integer quantity;
+
+    public OrderLine(Product product, Integer quantity) {
+    }
 }

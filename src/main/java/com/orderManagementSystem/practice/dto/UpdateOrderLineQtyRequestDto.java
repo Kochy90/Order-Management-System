@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateOrderLineQtyRequestDto {
-    private Long id;
+    private Long orderId;
+    private Long orderLineId;
     private Integer quantity;
 }

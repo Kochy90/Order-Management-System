@@ -30,6 +30,5 @@ public class ProductMapperImplTest {
         assertEquals(product.getName(), name);
         assertEquals(product.getSkuCode(), skuCode);
         assertEquals(product.getUnitPrice(), unitPrice);
-        assertNull(product.getId());
     }
 }

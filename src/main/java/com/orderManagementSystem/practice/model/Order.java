@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -34,4 +35,16 @@ public class Order {
     @CreatedDate
     private Date submissionDate;
 
+    public void addToListOfOrderLines(OrderLine newOrderLine) {
+        listOfOrderLines.add(newOrderLine);
+    }
+
+    public void updateQuantityOfProductsByOrderLineIndex(int index, int qty) {
+        List<OrderLine> list = new ArrayList<>(listOfOrderLines);
+        OrderLine updatedOrderLine = list.get(index);
+        updatedOrderLine.setQuantity(qty);
+        list.set(index, updatedOrderLine);
+
+        this.listOfOrderLines = list;
+    }
 }

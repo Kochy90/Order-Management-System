@@ -1,5 +1,6 @@
 package com.orderManagementSystem.practice.service.impl;
 
+import com.orderManagementSystem.practice.exception.ProductNotFoundException;
 import com.orderManagementSystem.practice.repository.ProductRepository;
 import com.orderManagementSystem.practice.dto.CreateProductRequestDto;
 import com.orderManagementSystem.practice.model.Product;
@@ -20,5 +21,11 @@ public class ProductServiceImpl implements ProductService {
     public Product createProduct(CreateProductRequestDto dto) {
         Product newProduct = ProductMapper.INSTANCE.convert(dto);
         return repository.save(newProduct);
+    }
+
+    @Override
+    public Product getProductById(Long productId) throws ProductNotFoundException {
+        return repository.findById(productId)
+                .orElseThrow(ProductNotFoundException::new);
     }
 }
