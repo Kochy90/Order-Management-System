@@ -39,4 +39,3 @@ ORDER MANAGEMENT SYSTEM API:
 	3) You can use SpringBoot and SpringData (JPA)					  (most points)
 
 	//TODO Int test with Mockaroo, implement "unhappy flow" with exception, covered by unit tests,
-	//TODO Build APIs in controllers (not complicated, just calls the relevant services and methods)

@@ -1,0 +1,50 @@
+package com.orderManagementSystem.com.model;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+@Data
+@Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class Order {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne()
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+    @OneToMany()
+    @JoinColumn(name = "fk_order_line_id")
+    private List<OrderLine> listOfOrderLines;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "submission_date", nullable = false, updatable = false)
+    @CreatedDate
+    private Date submissionDate;
+
+    public void addToListOfOrderLines(OrderLine newOrderLine) {
+        listOfOrderLines.add(newOrderLine);
+    }
+
+    public void updateQuantityOfProductsByOrderLineIndex(int index, int qty) {
+        List<OrderLine> list = new ArrayList<>(listOfOrderLines);
+        OrderLine updatedOrderLine = list.get(index);
+        updatedOrderLine.setQuantity(qty);
+        list.set(index, updatedOrderLine);
+
+        this.listOfOrderLines = list;
+    }
+}
